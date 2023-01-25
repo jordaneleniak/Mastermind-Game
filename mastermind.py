@@ -43,6 +43,8 @@ while successfulCodeEntered == False:  # This code will keep looping until a val
             elif len(str(playerOne)) > 4:
                 print("Code length too long enough. Please try again.")
                 playerOne = int(input("Please enter a 4 digit number: "))
+            else:
+                print("Error: How did you get here?")
     except:
         print("Error: You did not enter a valid code. Please enter numbers only!")
 
