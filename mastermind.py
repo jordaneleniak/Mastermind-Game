@@ -67,9 +67,12 @@ def getValidCode():
             validCode = validateCode(playerOne)
             if validCode == False:
                 playerOne = int(input("Please enter a new 4 digit number: "))
+            else:
+                validCode = True
+                clear()
         except:
             print("Error: You did not enter a valid code. Please enter numbers only!")
-
+    return
 
 ## Validate Code
 #
