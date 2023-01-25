@@ -60,15 +60,15 @@ def main():
 # This function gets a valid code.
 #
 def getValidCode():
-    try:
-        validCode = False
-        playerOne = int(input("Please enter a 4 digit number: "))
-        while validCode == False:
+    validCode = False
+    while validCode == False:
+        try:
+            playerOne = int(input("Please enter a 4 digit number: "))
             validCode = validateCode(playerOne)
             if validCode == False:
                 playerOne = int(input("Please enter a new 4 digit number: "))
-    except:
-        print("Error: You did not enter a valid code. Please enter numbers only!")
+        except:
+            print("Error: You did not enter a valid code. Please enter numbers only!")
 
 
 ## Validate Code
