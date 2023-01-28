@@ -58,6 +58,7 @@ def main():
 ## Get Valid Code
 #
 # This function gets a valid code.
+# TODO Eliminate loop for recursion.
 #
 def getValidCode():
     validCode = False
