@@ -68,7 +68,7 @@ def getValidCode():
             if validCode == False:
                 playerOne = int(input("Please enter a new 4 digit number: "))
             else:
-                # TODO: Add a verify code function to check if that's the code that the player wants. If verified, have it also return a boolean to set validCode to true. Also have the verify code clear the console if the code is valid.
+                verifyCode(validCode)
                 validCode = True
         except:
             print("Error: You did not enter a valid code. Please enter numbers only!")
@@ -87,6 +87,19 @@ def validateCode(playerOne):
     else:
         validCode = True
     return validCode
+
+def verifyCode(code):
+    codeVerified = False
+    isCodeCorrect = input("Is this the code you want? Yes/No: ").lower()
+    while codeVerified == False:
+        if isCodeCorrect == 'y' or isCodeCorrect == 'yes':
+            codeVerified = True
+            clear()
+        elif isCodeCorrect == 'n' or isCodeCorrect == 'no':
+            getValidCode()
+        else:
+            print("Please enter yes or no.")
+    return codeVerified
 
 ## Start the program
 #
