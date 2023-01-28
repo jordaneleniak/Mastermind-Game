@@ -66,7 +66,7 @@ def getValidCode():
             playerOne = int(input("Please enter a 4 digit number: "))
             validCode = validateCode(playerOne)
             if validCode == False:
-                playerOne = int(input("Please enter a new 4 digit number: "))
+                getValidCode() # Added a recursion loop
             else:
                 verifyCode(validCode)
                 validCode = True
@@ -88,6 +88,13 @@ def validateCode(playerOne):
         validCode = True
     return validCode
 
+## Verify Code
+#
+# This function verifies with the user that the code entered is the code
+#   that they want to use.
+# TODO Verify the logic and check that the call to getValidCoder() doesn't
+#   get stuck in an infinite loop.
+#
 def verifyCode(code):
     codeVerified = False
     isCodeCorrect = input("Is this the code you want? Yes/No: ").lower()
