@@ -76,11 +76,11 @@ def getValidCode():
 #
 # This function validates the entered code.
 #
-def validateCode(playerOne):
+def validateCode(codeToTest):
     validCode = False
-    if len(str(playerOne)) < 4:
+    if len(str(codeToTest)) < 4:
         print("Sorry, the code you entered is too short. Please try again.")
-    elif len(str(playerOne)) > 4:
+    elif len(str(codeToTest)) > 4:
         print("Sorry, the code you entered is too long. Please try again.")
     else:
         validCode = True
