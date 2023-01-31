@@ -20,7 +20,7 @@ clear = lambda: os.system('cls') # This function will clear the screen upon a su
 ## Declaring boolean test variables to make sure Player One has entered a valid code
 #   and verifies that they want to use the code entered.
 #
-
+'''
 def main():
     successfulCodeEntered = False
     correctCode = False
@@ -49,7 +49,7 @@ def main():
                     print("Error: How did you get here?")
         except:
             print("Error: You did not enter a valid code. Please enter numbers only!")
-
+'''
     ## Player Two
     #
     # This is where Player Two tries and guess the code that Player One has picked.
@@ -58,21 +58,18 @@ def main():
 ## Get Valid Code
 #
 # This function gets a valid code.
-# TODO Eliminate loop for recursion.
 #
 def getValidCode():
-    validCode = False
-    while validCode == False:
-        try:
-            playerOne = int(input("Please enter a 4 digit number: "))
-            validCode = validateCode(playerOne)
-            if validCode == False:
-                getValidCode() # Added a recursion loop
-            else:
-                verifyCode(validCode)
-                validCode = True
-        except:
-            print("Error: You did not enter a valid code. Please enter numbers only!")
+    try:
+        masterCode = int(input("Please enter a 4 digit number: "))
+        validCode = validateCode(masterCode)
+        if validCode == True:
+            verifyCode(masterCode)
+        else:
+            getValidCode() # Added a recursion loop
+    except:
+        print("Error: You did not enter a valid code. Please enter numbers only!")
+        getValidCode() # Added a recursion loop
     return
 
 ## Validate Code
@@ -93,22 +90,24 @@ def validateCode(playerOne):
 #
 # This function verifies with the user that the code entered is the code
 #   that they want to use.
-# TODO Verify the logic and check that the call to getValidCoder() doesn't
+# TODO Verify the logic and check that the call to getValidCode() doesn't
 #   get stuck in an infinite loop.
 #
 def verifyCode(code):
     codeVerified = False
+    print("You have entered", code, ".")
     isCodeCorrect = input("Is this the code you want? Yes/No: ").lower()
-    while codeVerified == False:
-        if isCodeCorrect == 'y' or isCodeCorrect == 'yes':
-            codeVerified = True
-            clear()
-        elif isCodeCorrect == 'n' or isCodeCorrect == 'no':
-            getValidCode()
-        else:
-            print("Please enter yes or no.")
+    if isCodeCorrect == 'y' or isCodeCorrect == 'yes':
+        codeVerified = True
+        clear()
+    elif isCodeCorrect == 'n' or isCodeCorrect == 'no':
+        getValidCode()
+    else:
+        print("Please enter yes or no.")
+        verifyCode(code)
     return codeVerified
 
 ## Start the program
 #
-main()
+#main()
+#getValidCode()
