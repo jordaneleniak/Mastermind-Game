@@ -17,19 +17,49 @@ clear = lambda: os.system('cls') # This function will clear the screen upon a su
 #   is the right length.
 #
 
+## Player Two
+#
+# This is where Player Two tries and guess the code that Player One has picked.
+#
+
 ## Declaring boolean test variables to make sure Player One has entered a valid code
 #   and verifies that they want to use the code entered.
 #
 
+## Main Function
+#
+# The main function controls the game and tracks scores.
+#
 def main():
+    # Forcing player scores to be ints
+    playerOneScore = int(0)
+    playerTwoScore = int(0)
+    endOfGame = False
+    welcome()
+    while endOfGame == False:
+        getValidCode()
+        keepPlaying = input("Do you wish to keep playing? Yes/No ").lower()
+        while keepPlaying not in['yes', 'y', 'no', 'n']:
+            print("Please enter yes or no.")
+            keepPlaying = input("Do you wish to keep playing? Yes/No ").lower()
+        if keepPlaying == 'no' or keepPlaying == 'n':
+            endOfGame = True
+    print("Final scores!")
+    displayScores(playerOneScore, playerTwoScore)
+    print("Thank you for playing!")
+
+## Welcome splash screen
+#
+# This function is for the welcome splash screen. This is a separate function to make changing the welcome message easier.
+#
+def welcome():
     print("Welcome to MASTERMIND!")
     print("The master code breaking game.")
-    getValidCode()
 
-    ## Player Two
-    #
-    # This is where Player Two tries and guess the code that Player One has picked.
-    #
+def displayScores(playerOneScore, playerTwoScore):
+    print("Player One:", playerOneScore)
+    print("Player Two:", playerTwoScore)
+
 
 ## Get Valid Code
 #
