@@ -34,14 +34,19 @@ def main():
     # Forcing player scores to be ints
     playerOneScore = int(0)
     playerTwoScore = int(0)
+    # Declaring test booleans to check for end of game and a successfully cracked master code.
     endOfGame = False
+    successfulCrack = False
     welcome()
     while endOfGame == False:
         masterCode = int(getValidCode())
         print("Player two, try and guess the code player one has chosen.")
-        testCode = int(getValidCode())
-        print("Master code:", masterCode)
-        print("Test code", testCode)
+        while successfulCrack == False:
+            testCode = int(getValidCode())
+            resultOfTest = compareCodes(masterCode, testCode)
+            successfulCrack = resultOfTest[0]
+            codeHint = resultOfTest[1]
+            print(codeHint)
         endOfGame = keepPlaying()
     print("Final scores!")
     displayScores(playerOneScore, playerTwoScore)
@@ -128,7 +133,10 @@ def keepPlaying():
 # This function will compare the code player 2 entered against the master code player one chose.
 #
 def compareCodes(masterCode, testCode):
-    pass
+    successfulCrack = False
+    if masterCode == testCode:
+        successfulCrack = True
+    return successfulCrack, str(testCode)
 
 ## Start the program
 #
