@@ -37,9 +37,12 @@ def main():
     endOfGame = False
     welcome()
     while endOfGame == False:
-        getValidCode()
+        masterCode = int(getValidCode())
+        print("Player two, try and guess the code player one has chosen.")
+        testCode = int(getValidCode())
+        print("Master code:", masterCode)
+        print("Test code", testCode)
         endOfGame = keepPlaying()
-        
     print("Final scores!")
     displayScores(playerOneScore, playerTwoScore)
     print("Thank you for playing!")
@@ -62,16 +65,16 @@ def displayScores(playerOneScore, playerTwoScore):
 #
 def getValidCode():
     try:
-        masterCode = int(input("Please enter a 4 digit number: "))
-        validCode = validateCode(masterCode)
+        code = int(input("Please enter a 4 digit number: "))
+        validCode = validateCode(code)
         if validCode == True:
-            verifyCode(masterCode)
+            verifyCode(code)
         else:
             getValidCode() # Added a recursion loop
     except:
         print("Error: You did not enter a valid code. Please enter numbers only!")
         getValidCode() # Added a recursion loop
-    return
+    return code
 
 ## Validate Code
 #
@@ -119,6 +122,13 @@ def keepPlaying():
     if keepPlaying == 'no' or keepPlaying == 'n':
         endOfGame = True
     return endOfGame
+
+## Compare codes
+#
+# This function will compare the code player 2 entered against the master code player one chose.
+#
+def compareCodes(masterCode, testCode):
+    pass
 
 ## Start the program
 #
