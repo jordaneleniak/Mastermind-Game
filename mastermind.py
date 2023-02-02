@@ -38,12 +38,8 @@ def main():
     welcome()
     while endOfGame == False:
         getValidCode()
-        keepPlaying = input("Do you wish to keep playing? Yes/No ").lower()
-        while keepPlaying not in['yes', 'y', 'no', 'n']:
-            print("Please enter yes or no.")
-            keepPlaying = input("Do you wish to keep playing? Yes/No ").lower()
-        if keepPlaying == 'no' or keepPlaying == 'n':
-            endOfGame = True
+        endOfGame = keepPlaying()
+        
     print("Final scores!")
     displayScores(playerOneScore, playerTwoScore)
     print("Thank you for playing!")
@@ -59,7 +55,6 @@ def welcome():
 def displayScores(playerOneScore, playerTwoScore):
     print("Player One:", playerOneScore)
     print("Player Two:", playerTwoScore)
-
 
 ## Get Valid Code
 #
@@ -110,6 +105,20 @@ def verifyCode(code):
         print("Please enter yes or no.")
         verifyCode(code)
     return codeVerified
+
+## Keep Playing
+#
+# This function tests to see if the players want to keep playing or not
+#
+def keepPlaying():
+    endOfGame = False
+    keepPlaying = input("Do you wish to keep playing? Yes/No ").lower()
+    while keepPlaying not in['yes', 'y', 'no', 'n']:
+        print("Please enter yes or no.")
+        keepPlaying = input("Do you wish to keep playing? Yes/No ").lower()
+    if keepPlaying == 'no' or keepPlaying == 'n':
+        endOfGame = True
+    return endOfGame
 
 ## Start the program
 #
