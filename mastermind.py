@@ -47,6 +47,7 @@ def main():
             successfulCrack = resultOfTest[0]
             codeHint = resultOfTest[1]
             print(codeHint)
+            print(masterCode, testCode)
         endOfGame = keepPlaying()
     print("Final scores!")
     displayScores(playerOneScore, playerTwoScore)
@@ -132,11 +133,25 @@ def keepPlaying():
 #
 # This function will compare the code player 2 entered against the master code player one chose.
 #
+
 def compareCodes(masterCode, testCode):
     successfulCrack = False
     if masterCode == testCode:
         successfulCrack = True
-    return successfulCrack, str(testCode)
+    else:
+        hint = getCodeHint(masterCode, testCode)
+    return successfulCrack, hint
+
+def getCodeHint(masterCode, testCode):
+    hint = "temp"
+    for i in masterCode:
+        if masterCode[i] == testCode[i]:
+            hint[i] = testCode[i]
+        else:
+            for j in testCode:
+                pass   
+    return hint
+
 
 ## Start the program
 #
