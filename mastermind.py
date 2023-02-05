@@ -143,13 +143,21 @@ def compareCodes(masterCode, testCode):
     return successfulCrack, hint
 
 def getCodeHint(masterCode, testCode):
-    hint = "temp"
-    for i in masterCode:
+    hint = []
+    masterCode = str(masterCode)
+    testCode = str(testCode)
+    i = 0
+    for x in masterCode:
+        j = i
         if masterCode[i] == testCode[i]:
-            hint[i] = testCode[i]
+            hint.append("x")
         else:
-            for j in testCode:
-                pass   
+            for y in testCode:
+                if masterCode[i] == testCode[j]:
+                    hint.append("o")
+                j += 1
+        i += 1
+    hint = str(hint)
     return hint
 
 
