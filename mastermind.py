@@ -133,7 +133,6 @@ def keepPlaying():
 #
 # This function will compare the code player 2 entered against the master code player one chose.
 #
-
 def compareCodes(masterCode, testCode):
     successfulCrack = False
     if masterCode == testCode:
@@ -143,6 +142,12 @@ def compareCodes(masterCode, testCode):
         hint = getCodeHint(masterCode, testCode)
     return successfulCrack, hint
 
+## Get Code Hint
+#
+# This function returns a hint to the player to help them crack the master code. If the player
+#   has a correct number in the right spot, it returns an 'x'. If the player has a correct
+#   number in the wrong spot, it returns an 'o'.
+#
 def getCodeHint(masterCode, testCode):
     hint = []
     masterCode = str(masterCode)
