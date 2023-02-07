@@ -2,18 +2,6 @@
 Program: Mastermind
 Author: Jordan Eleniak
 
-This is a mastermind game. Player one enters a code and then player two has to try and
-crack the code. Each attempt will yield a clue to help crack the code. Player two will be
-told if they have a correct number in the correct spot or if they have a correct number
-in the wrong spot.
-"""
-# Importing OS to clear screen to prevent Player two from seeing the code. 
-import os
-clear = lambda: os.system('cls') # This function will clear the screen upon a successful code entry.
-
-'''
-MasterMind Game
-
 This is a digital copy of the board game Mastermind.
 
 Player One chooses the master code. The mastercode has to be 4 ints long. The game
@@ -33,11 +21,10 @@ The code checking process compares each number in the mastercode against each nu
 The game then displays the hint to help the player narrow down possibilities. Player two has
     20 attempts to try and crack the mastercode player one has chosen. If they crack the master
     code in 20 attempts or less, player two gets a point. Otherwise player one gets a point.
-'''
-
-## Declaring boolean test variables to make sure Player One has entered a valid code
-#   and verifies that they want to use the code entered.
-#
+"""
+# Importing OS to clear screen to prevent Player two from seeing the code. 
+import os
+clear = lambda: os.system('cls') # This function will clear the screen upon a successful code entry.
 
 ## Main Function
 #
