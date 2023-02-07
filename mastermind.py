@@ -86,7 +86,7 @@ def displayScores(playerOneScore, playerTwoScore):
 # This function gets a valid code.
 #
 def getValidCode(codeLength):
-    code = 0000
+    code = int(0000)
     try:
         code = int(input("Please enter a 4 digit number: "))
         validCode = validateCode(codeLength, code)
