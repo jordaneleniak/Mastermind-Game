@@ -11,16 +11,29 @@ in the wrong spot.
 import os
 clear = lambda: os.system('cls') # This function will clear the screen upon a successful code entry.
 
-## Player One starts
-#
-# This code block prompts Player One to enter a code and checks to make sure that it
-#   is the right length.
-#
+'''
+MasterMind Game
 
-## Player Two
-#
-# This is where Player Two tries and guess the code that Player One has picked.
-#
+This is a digital copy of the board game Mastermind.
+
+Player One chooses the master code. The mastercode has to be 4 ints long. The game
+    will then verify the validated code. Once validated, the player will be prompted if
+    that's the code they want to use. If not, the player will have to keep entering a new
+    code until they enter one they want to use.
+
+Player Two tries and guess the code that Player One has picked. The code undergoes the same
+    validation and verification as player one. Once player two enters a valid code that they
+    want to try, the game will then compare the two codes.
+
+The code checking process compares each number in the mastercode against each number in the
+    test code. If player two has a correct number in the correct spot, the game assigns 'x'
+    to a variable called hint. If player two has a correct number in the wrong spot, the
+    game assigns 'o' to the variable hint.
+
+The game then displays the hint to help the player narrow down possibilities. Player two has
+    20 attempts to try and crack the mastercode player one has chosen. If they crack the master
+    code in 20 attempts or less, player two gets a point. Otherwise player one gets a point.
+'''
 
 ## Declaring boolean test variables to make sure Player One has entered a valid code
 #   and verifies that they want to use the code entered.
