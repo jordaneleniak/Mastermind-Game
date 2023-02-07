@@ -37,22 +37,26 @@ def main():
     # Declaring test booleans to check for end of game and a successfully cracked master code.
     endOfGame = False
     successfulCrack = False
+
+    totalNumberOfGuessesAllowed = 20
+    codeLength = 4
     welcome()
     while endOfGame == False:
         numberOfGuesses = 0
-        masterCode = int(getValidCode())
+        masterCode = int(getValidCode(codeLength))
+        clear()
         print("Player two, try and guess the code player one has chosen.")
-        while successfulCrack == False and numberOfGuesses <= 20:
-            testCode = int(getValidCode())
+        while successfulCrack == False and numberOfGuesses <= totalNumberOfGuessesAllowed:
+            testCode = int(getValidCode(codeLength))
             resultOfTest = compareCodes(masterCode, testCode)
             successfulCrack = resultOfTest[0]
             codeHint = resultOfTest[1]
             print(codeHint)
-            print(masterCode, testCode)
+            print(masterCode, testCode) # TODO Delete this line of code, only here for testing purposes!
             numberOfGuesses += 1
             print(numberOfGuesses)
         if testCode == masterCode:
-            if numberOfGuesses <= 20:
+            if numberOfGuesses <= totalNumberOfGuessesAllowed:
                 playerTwoScore += 1
         else:
             playerOneScore += 1
@@ -77,28 +81,28 @@ def displayScores(playerOneScore, playerTwoScore):
 #
 # This function gets a valid code.
 #
-def getValidCode():
+def getValidCode(codeLength):
     try:
         code = int(input("Please enter a 4 digit number: "))
-        validCode = validateCode(code)
+        validCode = validateCode(codeLength, code)
         if validCode == True:
-            verifyCode(code)
+            verifyCode(codeLength, code)
         else:
-            getValidCode() # Added a recursion loop
+            getValidCode(codeLength) # Added a recursion loop
     except:
         print("Error: You did not enter a valid code. Please enter numbers only!")
-        getValidCode() # Added a recursion loop
+        getValidCode(codeLength) # Added a recursion loop
     return code
 
 ## Validate Code
 #
 # This function validates the entered code.
 #
-def validateCode(codeToTest):
+def validateCode(codeLength, codeToTest):
     validCode = False
-    if len(str(codeToTest)) < 4:
+    if len(str(codeToTest)) < codeLength:
         print("Sorry, the code you entered is too short. Please try again.")
-    elif len(str(codeToTest)) > 4:
+    elif len(str(codeToTest)) > codeLength:
         print("Sorry, the code you entered is too long. Please try again.")
     else:
         validCode = True
@@ -109,18 +113,17 @@ def validateCode(codeToTest):
 # This function verifies with the user that the code entered is the code
 #   that they want to use.
 #
-def verifyCode(code):
+def verifyCode(codeLength, code):
     codeVerified = False
     print("You have entered", code, ".")
     isCodeCorrect = input("Is this the code you want? Yes/No: ").lower()
     if isCodeCorrect == 'y' or isCodeCorrect == 'yes':
         codeVerified = True
-        clear()
     elif isCodeCorrect == 'n' or isCodeCorrect == 'no':
-        getValidCode()
+        getValidCode(codeLength)
     else:
         print("Please enter yes or no.")
-        verifyCode(code)
+        verifyCode(codeLength, code)
     return codeVerified
 
 ## Keep Playing
@@ -160,17 +163,13 @@ def getCodeHint(masterCode, testCode):
     hint = []
     masterCode = str(masterCode)
     testCode = str(testCode)
-    i = 0
-    for x in masterCode:
+    for i in range(4):
         if masterCode[i] == testCode[i]:
             hint.append("x")
         else:
-            j = 0
-            for y in testCode:
+            for j in range(4):
                 if masterCode[i] == testCode[j]:
                     hint.append("o")
-                j += 1
-        i += 1
     hint = str(hint)
     return hint
 
