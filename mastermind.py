@@ -43,11 +43,11 @@ def main():
     welcome()
     while endOfGame == False:
         numberOfGuesses = 0
-        masterCode = int(getValidCode(codeLength))
+        masterCode = getValidCode(codeLength)
         clear()
         print("Player two, try and guess the code player one has chosen.")
         while successfulCrack == False and numberOfGuesses <= totalNumberOfGuessesAllowed:
-            testCode = int(getValidCode(codeLength))
+            testCode = getValidCode(codeLength)
             resultOfTest = compareCodes(masterCode, testCode)
             successfulCrack = resultOfTest[0]
             codeHint = resultOfTest[1]
