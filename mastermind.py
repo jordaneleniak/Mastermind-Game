@@ -73,6 +73,10 @@ def welcome():
     print("Welcome to MASTERMIND!")
     print("The master code breaking game.")
 
+## Display Scores
+#
+# This function displays the scores.
+#
 def displayScores(playerOneScore, playerTwoScore):
     print("Player One:", playerOneScore)
     print("Player Two:", playerTwoScore)
@@ -82,6 +86,7 @@ def displayScores(playerOneScore, playerTwoScore):
 # This function gets a valid code.
 #
 def getValidCode(codeLength):
+    code = 0000
     try:
         code = int(input("Please enter a 4 digit number: "))
         validCode = validateCode(codeLength, code)
