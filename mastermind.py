@@ -34,6 +34,7 @@ def main():
     # Forcing player scores to be ints
     playerOneScore = int(0)
     playerTwoScore = int(0)
+    gameRound = int(0)
     # Declaring test booleans to check for end of game and a successfully cracked master code.
     endOfGame = False
     successfulCrack = False
@@ -42,6 +43,7 @@ def main():
     codeLength = 4
     welcome()
     while endOfGame == False:
+        gameRound += 1
         numberOfGuesses = 0
         masterCode = getValidCode(codeLength)
         clear()
@@ -55,11 +57,19 @@ def main():
             print(masterCode, testCode) # TODO Delete this line of code, only here for testing purposes!
             numberOfGuesses += 1
             print(numberOfGuesses)
-        if testCode == masterCode:
-            if numberOfGuesses <= totalNumberOfGuessesAllowed:
+        if (gameRound % 2) == 0:
+            print('even round')
+            if testCode == masterCode:
+                if numberOfGuesses <= totalNumberOfGuessesAllowed:
+                    playerOneScore += 1
+            else:
                 playerTwoScore += 1
         else:
-            playerOneScore += 1
+            if testCode == masterCode:
+                if numberOfGuesses <= totalNumberOfGuessesAllowed:
+                    playerTwoScore += 1
+            else:
+                playerOneScore += 1
         endOfGame = keepPlaying()
     print("Final scores!")
     displayScores(playerOneScore, playerTwoScore)
