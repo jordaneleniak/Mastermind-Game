@@ -62,13 +62,13 @@ def main():
                 print("Sorry, the number was " + str(masterCode))
         if (gameRound % 2) == 0:
             if testCode == masterCode:
-                if totalNumberOfGuessesAllowed == 0: #TODO Fix logic
+                if totalNumberOfGuessesAllowed == 0:
                     playerOneScore += 1
             else:
                 playerTwoScore += 1
         else:
             if testCode == masterCode:
-                if totalNumberOfGuessesAllowed == 0: #TODO Fix logic
+                if totalNumberOfGuessesAllowed == 0:
                     playerTwoScore += 1
             else:
                 playerOneScore += 1
@@ -134,9 +134,9 @@ def verifyCode(codeLength, code):
     codeVerified = False
     print("You have entered", code, ".")
     isCodeCorrect = input("Is this the code you want? Yes/No: ").lower()
-    if isCodeCorrect == 'y' or isCodeCorrect == 'yes':
+    if isCodeCorrect[0] == 'y':
         codeVerified = True
-    elif isCodeCorrect == 'n' or isCodeCorrect == 'no':
+    elif isCodeCorrect[0] == 'n':
         getValidCode(codeLength)
     else:
         print("Please enter yes or no.")
@@ -150,10 +150,10 @@ def verifyCode(codeLength, code):
 def keepPlaying():
     endOfGame = False
     keepPlaying = input("Do you wish to keep playing? Yes/No ").lower()
-    while keepPlaying not in['yes', 'y', 'no', 'n']:
+    while keepPlaying[0] not in['y', 'n']:
         print("Please enter yes or no.")
         keepPlaying = input("Do you wish to keep playing? Yes/No ").lower()
-    if keepPlaying == 'no' or keepPlaying == 'n':
+    if keepPlaying[0] == 'n':
         endOfGame = True
     return endOfGame
 
