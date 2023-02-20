@@ -39,16 +39,15 @@ def main():
     endOfGame = False
     successfulCrack = False
 
-    totalNumberOfGuessesAllowed = 20
     codeLength = 4
     welcome()
     while endOfGame == False:
         gameRound += 1
-        numberOfGuesses = 0
+        totalNumberOfGuessesAllowed = 5
         masterCode = getValidCode(codeLength)
         clear()
         print("Player two, try and guess the code player one has chosen.")
-        while successfulCrack == False and numberOfGuesses <= totalNumberOfGuessesAllowed:
+        while successfulCrack == False and  totalNumberOfGuessesAllowed != 0:
             codeHint = ''
             testCode = getValidCode(codeLength)
             resultOfTest = compareCodes(masterCode, testCode)
@@ -56,18 +55,20 @@ def main():
             codeHint = resultOfTest[1]
             print(codeHint)
             print(masterCode, testCode) # TODO Delete this line of code, only here for testing purposes!
-            numberOfGuesses += 1
-            print(numberOfGuesses)
+            totalNumberOfGuessesAllowed -= 1
+            if totalNumberOfGuessesAllowed != 0:
+                print("Number of guesses remaining: " + str(totalNumberOfGuessesAllowed))
+            else:
+                print("Sorry, the number was " + str(masterCode))
         if (gameRound % 2) == 0:
-            print('even round')
             if testCode == masterCode:
-                if numberOfGuesses <= totalNumberOfGuessesAllowed:
+                if totalNumberOfGuessesAllowed == 0: #TODO Fix logic
                     playerOneScore += 1
             else:
                 playerTwoScore += 1
         else:
             if testCode == masterCode:
-                if numberOfGuesses <= totalNumberOfGuessesAllowed:
+                if totalNumberOfGuessesAllowed == 0: #TODO Fix logic
                     playerTwoScore += 1
             else:
                 playerOneScore += 1
@@ -102,7 +103,8 @@ def getValidCode(codeLength):
         code = int(input("Please enter a 4 digit number: "))
         validCode = validateCode(codeLength, code)
         if validCode == True:
-            verifyCode(codeLength, code)
+            #verifyCode(codeLength, code)
+            pass
         else:
             getValidCode(codeLength) # Added a recursion loop
     except:
