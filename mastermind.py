@@ -49,6 +49,7 @@ def main():
         clear()
         print("Player two, try and guess the code player one has chosen.")
         while successfulCrack == False and numberOfGuesses <= totalNumberOfGuessesAllowed:
+            codeHint = ''
             testCode = getValidCode(codeLength)
             resultOfTest = compareCodes(masterCode, testCode)
             successfulCrack = resultOfTest[0]
@@ -161,11 +162,11 @@ def keepPlaying():
 #
 def compareCodes(masterCode, testCode):
     successfulCrack = False
-    if masterCode == testCode:
+    if masterCode != testCode:
+        hint = getCodeHint(masterCode, testCode)
+    else:
         successfulCrack = True
         hint = testCode
-    else:
-        hint = getCodeHint(masterCode, testCode)
     return successfulCrack, hint
 
 ## Get Code Hint
@@ -179,12 +180,11 @@ def getCodeHint(masterCode, testCode):
     masterCode = str(masterCode)
     testCode = str(testCode)
     for i in range(4):
-        if masterCode[i] == testCode[i]:
-            hint.append("x")
-        else:
+        if masterCode[i] != testCode[i]:
             for j in range(4):
-                if masterCode[i] == testCode[j]:
-                    hint.append("o")
+                if masterCode[i] == testCode[j]: hint.append("o")
+        else:
+            hint.append("x")
     hint = str(hint)
     return hint
 
