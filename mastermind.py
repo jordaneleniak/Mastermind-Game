@@ -43,7 +43,7 @@ def main():
     welcome()
     while endOfGame == False:
         gameRound += 1
-        totalNumberOfGuessesAllowed = 5
+        totalNumberOfGuessesAllowed = 20
         masterCode = getValidCode(codeLength)
         clear()
         print("Player two, try and guess the code player one has chosen.")
@@ -103,8 +103,7 @@ def getValidCode(codeLength):
         code = int(input("Please enter a 4 digit number: "))
         validCode = validateCode(codeLength, code)
         if validCode == True:
-            #verifyCode(codeLength, code)
-            pass
+            verifyCode(codeLength, code)
         else:
             getValidCode(codeLength) # Added a recursion loop
     except:
