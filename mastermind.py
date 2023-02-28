@@ -183,7 +183,7 @@ def getCodeHint(masterCode, testCode):
     for i in range(4):
         if masterCode[i] != testCode[i]:
             for j in range(4):
-                if masterCode[i] == testCode[j]: hint.append("o")
+                if testCode[j] == masterCode[i]: hint.append("o")
         else:
             hint.append("x")
     hint = str(hint)
