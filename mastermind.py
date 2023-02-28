@@ -100,16 +100,17 @@ def displayScores(playerOneScore, playerTwoScore):
 def getValidCode(codeLength):
     code = int(0000)
     # swap recursion in this function to a while loop to fix the out of bounds error.
-    try:
-        code = int(input("Please enter a 4 digit number: "))
-        validCode = validateCode(codeLength, code)
-        if validCode == True:
-            verifyCode(codeLength, code)
-        else:
-            getValidCode(codeLength) # Added a recursion loop
-    except:
-        print("Error: You did not enter a valid code. Please enter numbers only!")
-        getValidCode(codeLength) # Added a recursion loop
+    validCode = False
+    while validCode == False:
+        try:
+            code = int(input("Please enter a 4 digit number: "))
+            validCode = validateCode(codeLength, code)
+            if validCode == True:
+                verifyCode(codeLength, code)
+            else:
+                getValidCode(codeLength) # Added a recursion loop
+        except:
+            print("Error: You did not enter a valid code. Please enter numbers only!")
     return code
 
 ## Validate Code
